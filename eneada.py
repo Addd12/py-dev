@@ -39,19 +39,19 @@ def extract_titles_using_list_comp(api_data):
     return titles
 
 #4a Demonstrate checking whether one of the extracted titles is of type int.
-def check_title_for_int(api_data):
-    for title in api_data:
+def check_title_for_int(titles):
+    for title in titles:
         if isinstance(title, int):
             print(f'This title is of type int: {title}')
         else:
-            print("No int found in the title list.")
+            print("\nNo int found in the title list.")
             return None
 
 api_url = 'https://jsonplaceholder.typicode.com/todos'
 fetched_data = fetch_api_data(api_url)
-#print(type(fetched_data))
+
 extract_titles(fetched_data)
 
-extract_titles_using_list_comp(fetched_data)
+titles_list = extract_titles_using_list_comp(fetched_data)
 
-check_title_for_int(fetched_data)
+check_title_for_int(titles_list)
