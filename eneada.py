@@ -30,12 +30,22 @@ def extract_titles_using_list_comp(api_data):
     specific_str = input("Please type the string you want to find in the title (ex. qui, aut, porro): ")
     print(f"List of titles that contain {specific_str}, extracted using list comprehension: ")
 
+    #3b Ensure that each printed title is a string.
     titles = [item['title'] for item in api_data if specific_str in item['title'] and isinstance(item['title'], str)]
     for title in titles:
+        #3a Format and print the filtered titles using f-strings.
         print(f'{title} contains the required string {specific_str}')
 
     return titles
 
+#4a Demonstrate checking whether one of the extracted titles is of type int.
+def check_title_for_int(api_data):
+    for title in api_data:
+        if isinstance(title, int):
+            print(f'This title is of type int: {title}')
+        else:
+            print("No int found in the title list.")
+            return None
 
 api_url = 'https://jsonplaceholder.typicode.com/todos'
 fetched_data = fetch_api_data(api_url)
@@ -43,3 +53,5 @@ fetched_data = fetch_api_data(api_url)
 extract_titles(fetched_data)
 
 extract_titles_using_list_comp(fetched_data)
+
+check_title_for_int(fetched_data)
