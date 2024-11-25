@@ -18,7 +18,7 @@ def extract_titles(api_data):
     print(f"List of titles that contain {specific_str}: ")
     for item in api_data:
         #get only the items that contain a specific string
-        if specific_str in item['title']:
+        if specific_str in item['title'] and isinstance(item['title'], str):
             print(item['title'])
             #then store them in a list
             titles.append(item['title'])
@@ -30,9 +30,9 @@ def extract_titles_using_list_comp(api_data):
     specific_str = input("Please type the string you want to find in the title (ex. qui, aut, porro): ")
     print(f"List of titles that contain {specific_str}, extracted using list comprehension: ")
 
-    titles = [item['title'] for item in api_data if specific_str in item['title']]
+    titles = [item['title'] for item in api_data if specific_str in item['title'] and isinstance(item['title'], str)]
     for title in titles:
-        print(title)
+        print(f'{title} contains the required string {specific_str}')
 
     return titles
 
